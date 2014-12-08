@@ -1,4 +1,5 @@
-#import <stdio.h>
+#include <stdio.h>
+#include <math.h>
 
 void solveEquation();
 void solveFibonacci();
@@ -15,49 +16,48 @@ int main(){
         /* fibonacci */
         solveFibonacci();
     }else if(choosen==3){
+		/* 42 */
         solve42();
-    }else{printf("Exit.");}
-
-
+    } /* choosen_menu */
     return 0;
-} // main
+} /* main */
 
 /* funzione che trova la soluzione alla vita */
 void solve42(){
-    int n1,n2;
+    int n1,n2,sum;
+    printf("Enter an integer number\n");
+    scanf("%d",&n1);
     do{
-        printf("Enter an integer number\n");
-        scanf("%d",&n1);
         printf("Enter another integer number\n");
         scanf("%d",&n2);
-        printf("Sum is %d\n",(n1+n2));
-    } while((n1+n2)!=42);
-} // solve42
+        sum = n1 + n2;
+        printf("Sum is %d\n",sum);
+        n1=n2;
+    } while(sum!=42);
+} /* solve42 */
 
 /* funzione che elabora fino all'ennesimo elemento fibonacci */
 void solveFibonacci(){
-    int n,i;
-    float prec1,prec2,fb;
-    prec1 = 1;
-    prec2 = 2;
+    int n , i = 0;
+    float a = 1, b = 0, fibonacci_number = 0;
     printf("Insert the index of Fibonacci element\n");
     scanf("%d",&n);
-    for(i=3;i<n;i++){
-        fb= prec1+prec2;
-        prec1=prec2;
-        prec2=fb;
-    }
-    printf("Fibonacci(%d) = %f\n",n,fb);
-} // solveFibonacci
+	while(i < n) {
+		b= fibonacci_number;
+		fibonacci_number = a + b;
+		a = b;
+		i++;
+	} /* while */
+	printf("Fibonacci(%d) = %f\n", n, fibonacci_number);
+} /* solveFibonacci */
 
 
 /* funzione che risolve una equazione di secondo grado */
 void solveEquation(){
-    float delta,x1,x2,a,b,c;
+    float delta,a,b,c;
     printf("Insert the coefficient a b c separated by spaces\n");
     scanf("%f %f %f",&a,&b,&c);
     delta = (b*b)-(4*a*c);
-
     if(a==0){
         printf("The equation degree is less than two\n");
     }else{
@@ -65,10 +65,9 @@ void solveEquation(){
         if(delta==0){
             printf("only one zero: %f\n", (-b/2*a));
         }else if(delta>0){
-            printf("two zeros: %f, %f\n",(-b+sqrt(delta))/(2*a),(-b-sqrt(delta))/(2*a));
+            printf("two zeros: %f, %f\n",(-b+pow(delta,1/2))/(2*a),(-b-pow(delta,1/2))/(2*a));
         }else if(delta<0){
             printf("no real zeros.\n");
-        } // if delta
-    } // if coeff A==0
-
-} // solveEquation
+        } /* if delta */
+    } /* if coeff_a */
+} /* solveEquation */
