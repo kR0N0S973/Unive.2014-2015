@@ -1,0 +1,1 @@
+se avete richieste di appunti C o F# basta fare una richiesta
