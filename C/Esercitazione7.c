@@ -65,7 +65,7 @@ void solveEquation(){
         if(delta==0){
             printf("only one zero: %f\n", (-b/2*a));
         }else if(delta>0){
-            printf("two zeros: %f, %f\n",(-b+pow(delta,1/2))/(2*a),(-b-pow(delta,1/2))/(2*a));
+            printf("two zeros: %f, %f\n",(-b+sqrt(delta))/(2*a),(-b-sqrt(delta))/(2*a));
         }else if(delta<0){
             printf("no real zeros.\n");
         } /* if delta */
