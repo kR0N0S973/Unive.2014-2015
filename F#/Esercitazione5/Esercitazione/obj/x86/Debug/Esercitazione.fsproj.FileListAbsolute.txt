@@ -1,0 +1,7 @@
+C:\Users\kwieders\Desktop\Esercitazione5\Esercitazione\bin\Debug\Correttore.exe
+C:\Users\kwieders\Desktop\Esercitazione5\Esercitazione\bin\Debug\Esercitazione.XML
+C:\Users\kwieders\Desktop\Esercitazione5\Esercitazione\bin\Debug\Esercitazione.exe
+C:\Users\kwieders\Desktop\Esercitazione5\Esercitazione\bin\Debug\Esercitazione.pdb
+C:\Users\kwieders\Desktop\Esercitazione5\Esercitazione\obj\x86\Debug\Esercitazione.fsprojResolveAssemblyReference.cache
+C:\Users\kwieders\Desktop\Esercitazione5\Esercitazione\obj\x86\Debug\Esercitazione.exe
+C:\Users\kwieders\Desktop\Esercitazione5\Esercitazione\obj\x86\Debug\Esercitazione.pdb

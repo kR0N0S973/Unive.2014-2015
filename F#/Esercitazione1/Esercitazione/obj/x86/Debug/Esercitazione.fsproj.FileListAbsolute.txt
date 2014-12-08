@@ -1,0 +1,14 @@
+C:\Users\kwieders\Desktop\Esercitazione1\Esercitazione\obj\x86\Debug\Esercitazione.fsprojResolveAssemblyReference.cache
+C:\Users\kwieders\Desktop\Esercitazione1\Esercitazione\bin\Debug\Correttore.exe
+C:\Users\kwieders\Desktop\Esercitazione1\Esercitazione\bin\Debug\Esercitazione.XML
+C:\Users\kwieders\Desktop\Esercitazione1\Esercitazione\bin\Debug\Esercitazione.exe
+C:\Users\kwieders\Desktop\Esercitazione1\Esercitazione\bin\Debug\Esercitazione.pdb
+C:\Users\kwieders\Desktop\Esercitazione1\Esercitazione\obj\x86\Debug\Esercitazione.exe
+C:\Users\kwieders\Desktop\Esercitazione1\Esercitazione\obj\x86\Debug\Esercitazione.pdb
+C:\Users\kevin\Desktop\MEGASync\università\programmazione\Esercitazione1\Esercitazione\bin\Debug\Correttore.exe
+C:\Users\kevin\Desktop\MEGASync\università\programmazione\Esercitazione1\Esercitazione\bin\Debug\Esercitazione.XML
+C:\Users\kevin\Desktop\MEGASync\università\programmazione\Esercitazione1\Esercitazione\bin\Debug\Esercitazione.exe
+C:\Users\kevin\Desktop\MEGASync\università\programmazione\Esercitazione1\Esercitazione\bin\Debug\Esercitazione.pdb
+C:\Users\kevin\Desktop\MEGASync\università\programmazione\Esercitazione1\Esercitazione\obj\x86\Debug\Esercitazione.fsprojResolveAssemblyReference.cache
+C:\Users\kevin\Desktop\MEGASync\università\programmazione\Esercitazione1\Esercitazione\obj\x86\Debug\Esercitazione.exe
+C:\Users\kevin\Desktop\MEGASync\università\programmazione\Esercitazione1\Esercitazione\obj\x86\Debug\Esercitazione.pdb
