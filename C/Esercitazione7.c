@@ -1,3 +1,6 @@
+/* Copyright 2014-2015         *
+ * coded by Kevin Wiederstein  */
+
 #include <stdio.h>
 #include <math.h>
 
