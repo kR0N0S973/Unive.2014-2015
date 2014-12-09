@@ -42,12 +42,14 @@ void solveFibonacci(){
     float a = 1, b = 0, fibonacci_number = 0;
     printf("Insert the index of Fibonacci element\n");
     scanf("%d",&n);
-	while(i < n) {
-		b= fibonacci_number;
-		fibonacci_number = a + b;
-		a = b;
-		i++;
-	} /* while */
+    if(n!=0){
+		while(i < n) {
+			b= fibonacci_number;
+			fibonacci_number = a + b;
+			a = b;
+			i++;
+		} /* while */
+	}else{fibonacci_number=1;}
 	printf("Fibonacci(%d) = %f\n", n, fibonacci_number);
 } /* solveFibonacci */
 
