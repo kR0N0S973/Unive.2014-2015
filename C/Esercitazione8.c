@@ -23,8 +23,8 @@
 	#define DUNGEON_DIM 	10
 	const char tiles[DUNGEON_DIM]		 = {'n','s','n','s','e','t','n','n','e','d'};
 	const int effects[DUNGEON_DIM] 	     = {0,3,0,3,3,0,0,0,6,3};
-    int playerPosition[2]                = {-1,-1};
-    int movRand = 0,Rand = 0,RandEnemy = 0,RandOpponent = 0,RandUnlock = 0,RandLock = 0,turn=0;
+    int playerPosition[2]                = {0,0};
+    int movRand = 0,Rand = 0,RandEnemy = 0,RandOpponent = 0,RandUnlock = 0,RandLock = 0,turn=0,exitDungeon = 1;
 /* ####################### */
 
 void bankAccount();
@@ -79,7 +79,7 @@ void dungeon(){
     scanf("%d",&randSeed);
     srand(randSeed);
     /* start game */
-    while((playerPosition[0] <= 10 || playerPosition[1] <= 10)){
+    while(exitDungeon){
         movRand = (1 + rand() % 3);
         playerPosition[turn] = playerPosition[turn] + movRand;
         printf("Player %d moving by %d tiles\n",turn,movRand);
@@ -93,6 +93,9 @@ void dungeon(){
             printf("Player %d current tile: %c\n",turn,tiles[playerPosition[turn]]);
         }
         printf("**********\n");
+        getchar();
+        if(turn==1){turn = 0;}else{turn = 1;}
+        if((playerPosition[0] >= 10) ||  (playerPosition[1] >= 10)){exitDungeon = 0;}
     }
     printf("Player %d has won\n");
 }
@@ -102,8 +105,8 @@ void dungeon_do(char c,int effect,int turn){
         printf("Player %d is on a normal tile\n",turn);
     }else if(c=='s'){
         Rand = -effect + rand() % effect;
-        printf("Player %d is sliding by %d tiles\n",Rand);
-        if((playerPosition[turn] + Rand)<(-1)){playerPosition[turn] = -1;}else{playerPosition[turn] = playerPosition[turn] + Rand;}
+        printf("Player %d is sliding by %d tiles\n",turn,Rand);
+        if((playerPosition[turn] + Rand)<(0)){playerPosition[turn] = 0;}else{playerPosition[turn] = playerPosition[turn] + Rand;}
     }else if(c=='e'){
         RandOpponent = 1 + rand() % effect;
         RandEnemy    = 1 + rand() % 6;
@@ -116,6 +119,7 @@ void dungeon_do(char c,int effect,int turn){
     }else if(c=='t'){
         Rand = 0 + rand() % (playerPosition[turn]-1);
         printf("Player %d has activated a trap and is going back to tile %d\n",turn,Rand);
+        playerPosition[turn] = 1;
     }else if(c=='d'){
         RandLock      = 1 + rand() % 6;
         RandUnlock    = 1 + rand() % 6;
