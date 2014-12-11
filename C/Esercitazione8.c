@@ -7,7 +7,7 @@
 /* DICHIARAZIONE VARIABILI */
 	/* esercizio 1 */
 	#define RATE_DIM 12
-	const double interestRates[RATE_DIM] = {0.2,-0.6,0.3,0.6,-0.4,0.1,0.5,-0.85,-0.7,0.2,0.1,0.0}; 
+	const double interestRates[RATE_DIM] = {0.2,-0.6,0.3,0.6,-0.4,0.1,0.5,-0.85,-0.7,0.2,0.1,0.0};
 	double credito=4500,interesse=2.5;
 	int i;
 	/* esercizio 2 */
@@ -16,20 +16,22 @@
 	const int shallowsX[SHALLOW_DIM] = {3,1,2,0};
 	const int shallowsY[SHALLOW_DIM] = {0,1,3,4};
     const int courseX[COURSE_DIM]    = {0,1,3,4};
-    int courseY[COURSE_DIM],randSeed,j,flag[1]={-1,-1};
+    int courseY[COURSE_DIM];
+    int randSeed,j;
+    int flag[2]={-1,-1};
 	/* esercizio 3 */
 	#define DUNGEON_DIM 	10
 	const char tiles[DUNGEON_DIM]		 = {'n','s','n','s','e','t','n','n','e','d'};
 	const int effects[DUNGEON_DIM] 	     = {0,3,0,3,3,0,0,0,6,3};
-    int playerPosition[1]                = {-1,-1}
-    int player = 0;p1 = 0;p2 = 0;movRand = 0;Rand = 0;RandEnemy = 0;RandOpponent = 0;RandUnlock = 0;RandLock = 0;
-/* ####################### */ 
+    int playerPosition[2]                = {-1,-1};
+    int movRand = 0,Rand = 0,RandEnemy = 0,RandOpponent = 0,RandUnlock = 0,RandLock = 0,turn=0;
+/* ####################### */
 
 void bankAccount();
 void boatCourse();
 void dungeon();
 void dungeon_do(char,int,int);
-    
+
 int main(){
 	int choose;
 	printf("Choose the part to execute:\n\t1 \t: Part 1 (Bank Account)\n\t2 \t: Part 2 (Boat course)\n\t3 \t: Part 3 (Dungeon)\n\tother \t: Exit\n\n");
@@ -41,7 +43,7 @@ int main(){
 	}else if(choose==3){
 		dungeon();
 	}
-	
+
 	return 0;
 }
 
@@ -62,10 +64,10 @@ void boatCourse(){
     printf("Boat course:\n");
     for(j=0;j<COURSE_DIM;j++){
         courseY[j] = 0 + rand() % 4;
-        if(shallowX[j] == courseX[j] && shallowY[j] == courseY[j]){flag[0]=shallowX[j];flag[1]=shallowy[j];}
+        if(shallowsX[j] == courseX[j] && shallowsY[j] == courseY[j]){flag[0]=shallowsX[j];flag[1]=shallowsY[j];}
         printf("(%d,%d)\n",courseY[j],courseX[j]);}
     printf("Shallows:\n");
-    for(j=0;j<COURSE_DIM;j++){printf("(%d,%d)\n",shallowY[j],shallowX[j]);}
+    for(j=0;j<COURSE_DIM;j++){printf("(%d,%d)\n",shallowsY[j],shallowsX[j]);}
     if(flag[0] != -1 && flag[1] != -1){
         printf("The boat will run ashore at (%d,%d)\n",flag[0],flag[1]);
     }else{printf("The boat course is valid\n");}
@@ -77,7 +79,7 @@ void dungeon(){
     scanf("%d",&randSeed);
     srand(randSeed);
     /* start game */
-    while(!(playerPosition[0] <= 10 && playerPosition[1] <= 10)){
+    while((playerPosition[0] <= 10 || playerPosition[1] <= 10)){
         movRand = (1 + rand() % 3);
         playerPosition[turn] = playerPosition[turn] + movRand;
         printf("Player %d moving by %d tiles\n",turn,movRand);
@@ -101,7 +103,7 @@ void dungeon_do(char c,int effect,int turn){
     }else if(c=='s'){
         Rand = -effect + rand() % effect;
         printf("Player %d is sliding by %d tiles\n",Rand);
-        if(playerPosition[turn] + Rand)<-1){playerPosition[turn] = -1;}else{playerPosition[turn] = playerPosition[turn] + Rand;}
+        if((playerPosition[turn] + Rand)<(-1)){playerPosition[turn] = -1;}else{playerPosition[turn] = playerPosition[turn] + Rand;}
     }else if(c=='e'){
         RandOpponent = 1 + rand() % effect;
         RandEnemy    = 1 + rand() % 6;
