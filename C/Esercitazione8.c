@@ -12,19 +12,19 @@
 	int i;
 	/* esercizio 2 */
 	#define SHALLOW_DIM 4
-    	#define COURSE_DIM  4
-	const int shallowsX[SHALLOW_DIM] = {3,1,2,0};
-	const int shallowsY[SHALLOW_DIM] = {0,1,3,4};
-	const int courseX[COURSE_DIM]    = {0,1,3,4};
-    	int courseY[COURSE_DIM];
-    	int randSeed,j;
-    	int flag[2]={-1,-1};
+    #define COURSE_DIM  4
+	const int shallowsX[SHALLOW_DIM] = { 3 , 1 , 2 , 0 };
+	const int shallowsY[SHALLOW_DIM] = { 0 , 1 , 3 , 4 };
+	const int courseX[COURSE_DIM]    = { 0 , 1 , 3 , 4 };
+    int courseY[COURSE_DIM];
+    int randSeed,j;
+    int flag[2]={-1,-1};
 	/* esercizio 3 */
 	#define DUNGEON_DIM 	10
 	const char tiles[DUNGEON_DIM]	     = {'n','s','n','s','e','t','n','n','e','d'};
-	const int effects[DUNGEON_DIM] 	     = {0,3,0,3,3,0,0,0,6,3};
-    	int playerPosition[2]                = {0,0};
-    	int movRand = 0,Rand = 0,RandEnemy = 0,RandOpponent = 0,RandUnlock = 0,RandLock = 0,turn=0,exitDungeon = 1;
+	const int effects[DUNGEON_DIM] 	     = { 0 , 3 , 0 , 3 , 3 , 0 , 0 , 0 , 6 , 3 };
+    int playerPosition[2]                = { 0 , 0 };
+    int movRand = 0,Rand = 0,RandEnemy = 0,RandOpponent = 0,RandUnlock = 0,RandLock = 0,turn=0,exitDungeon = 1;
 /* ####################### */
 
 void bankAccount();
