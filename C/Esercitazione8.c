@@ -99,11 +99,12 @@ void dungeon(){
     printf("Player %d has won\n");
 }
 
+/* (execute Dungeon Position with effect) */
 void dungeon_do(char c,int effect,int turn){
     if(c=='n'){
         printf("Player %d is on a normal tile\n",turn);
     }else if(c=='s'){
-        Rand = -effect + rand() % effect;
+        Rand = (0 + rand() % (effect+effect))-effect;
         printf("Player %d is sliding by %d tiles\n",turn,Rand);
         if((playerPosition[turn] + Rand)<(0)){playerPosition[turn] = 0;}else{playerPosition[turn] = playerPosition[turn] + Rand;}
     }else if(c=='e'){
