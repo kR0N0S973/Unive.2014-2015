@@ -12,11 +12,11 @@
 	int i;
 	/* esercizio 2 */
 	#define SHALLOW_DIM 4
-    #define COURSE_DIM  4
+    #define COURSE_DIM  5
 	const int shallowsX[SHALLOW_DIM] = { 3 , 1 , 2 , 0 };
 	const int shallowsY[SHALLOW_DIM] = { 0 , 1 , 3 , 4 };
-	const int courseX[COURSE_DIM]    = { 0 , 1 , 3 , 4 };
-    int courseY[COURSE_DIM];
+	const int courseY[COURSE_DIM]    = { 0 , 1 , 2 , 3 , 4};
+    int courseX[COURSE_DIM];
     int randSeed,j;
     int flag[2]={-1,-1};
 	/* esercizio 3 */
@@ -62,11 +62,11 @@ printf("Insert the random generator seed\n");
     srand(randSeed);
     printf("Boat course:\n");
     for(j=0;j<COURSE_DIM;j++){
-        courseY[j] = 0 + rand() % 4;
+        courseX[j] = 0 + rand() % 5;
         if(shallowsX[j] == courseX[j] && shallowsY[j] == courseY[j]){flag[0]=shallowsX[j];flag[1]=shallowsY[j];}
-        printf("(%d,%d)\n",courseY[j],courseX[j]);}
+        printf("(%d,%d)\n",courseX[j],courseY[j]);}
     printf("Shallows:\n");
-    for(j=0;j<COURSE_DIM;j++){printf("(%d,%d)\n",shallowsY[j],shallowsX[j]);}
+    for(j=0;j<SHALLOW_DIM;j++){printf("(%d,%d)\n",shallowsY[j],shallowsX[j]);}
     if(flag[0] != -1 && flag[1] != -1){
         printf("The boat will run ashore at (%d,%d)\n",flag[0],flag[1]);
     }else{printf("The boat course is valid\n");}
@@ -84,7 +84,7 @@ void dungeon(){
         printf("Player %d moving by %d tiles\n",turn,movRand);
         if(playerPosition[turn] == 0){
             printf("Player %d is at the dungeon entrance\n",turn);
-        }else if(playerPosition[turn] >= 10){
+        }else if(playerPosition[turn] >= 9){
             printf("Player %d has exited the dungeon\n",turn);
         }else{
             dungeon_do((tiles[playerPosition[turn]]),effects[playerPosition[turn]],turn);
@@ -93,7 +93,7 @@ void dungeon(){
         }
         printf("**********\n");
         if(turn==1){turn = 0;}else{turn = 1;}
-        if((playerPosition[0] >= 10) ||  (playerPosition[1] >= 10)){exitDungeon = 0;}
+        if((playerPosition[0] >= 9) ||  (playerPosition[1] >= 9)){exitDungeon = 0;}
     }
     printf("Player %d has won\n");
 }
@@ -103,12 +103,12 @@ void dungeon_do(char c,int effect,int turn){
     if(c=='n'){
         printf("Player %d is on a normal tile\n",turn);
     }else if(c=='s'){
-        Rand = (0 + rand() % (effect+effect))-effect;
+        Rand = (0 + rand() % (effect+effect+1))-effect-1;
         printf("Player %d is sliding by %d tiles\n",turn,Rand);
         if((playerPosition[turn] + Rand)<(0)){playerPosition[turn] = 0;}else{playerPosition[turn] = playerPosition[turn] + Rand;}
     }else if(c=='e'){
         RandOpponent = 1 + rand() % effect;
-        RandEnemy    = 1 + rand() % 6;
+        RandEnemy    = 1 + rand() % 7;
         if(RandEnemy >= RandOpponent){
             printf("Player %d has defeated an enemy: Player rolled %d Enemy rolled %d\n",turn,RandEnemy,RandOpponent);
         }else{
@@ -120,8 +120,8 @@ void dungeon_do(char c,int effect,int turn){
         printf("Player %d has activated a trap and is going back to tile %d\n",turn,Rand);
         playerPosition[turn] = 1;
     }else if(c=='d'){
-        RandLock      = 1 + rand() % 6;
-        RandUnlock    = 1 + rand() % 6;
+        RandLock      = 1 + rand() % 7;
+        RandUnlock    = 1 + rand() % 7;
         if(RandUnlock >= RandLock){
             printf("Player %d has unclocked a door and is advancing to the next tile: Player rolled %d Lock level was %d\n",turn,RandUnlock,RandLock);
             playerPosition[turn] = playerPosition[turn] + 1;
