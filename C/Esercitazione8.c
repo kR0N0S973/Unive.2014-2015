@@ -92,7 +92,6 @@ void dungeon(){
             printf("Player %d current tile: %c\n",turn,tiles[playerPosition[turn]]);
         }
         printf("**********\n");
-        getchar();
         if(turn==1){turn = 0;}else{turn = 1;}
         if((playerPosition[0] >= 10) ||  (playerPosition[1] >= 10)){exitDungeon = 0;}
     }
