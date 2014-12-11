@@ -23,7 +23,7 @@
 	#define DUNGEON_DIM 	10
 	const char tiles[DUNGEON_DIM]	     = {'n','s','n','s','e','t','n','n','e','d'};
 	const int effects[DUNGEON_DIM] 	     = { 0 , 3 , 0 , 3 , 3 , 0 , 0 , 0 , 6 , 3 };
-    int playerPosition[2]                = { 0 , 0 };
+    int playerPosition[2]                = { -1 , -1 };
     int movRand = 0,Rand = 0,RandEnemy = 0,RandOpponent = 0,RandUnlock = 0,RandLock = 0,turn=0,exitDungeon = 1;
 /* ####################### */
 
@@ -88,8 +88,14 @@ void dungeon(){
             printf("Player %d has exited the dungeon\n",turn);
         }else{
             dungeon_do((tiles[playerPosition[turn]]),effects[playerPosition[turn]],turn);
-            printf("Player %d position: %d\n",turn,playerPosition[turn]);
-            printf("Player %d current tile: %c\n",turn,tiles[playerPosition[turn]]);
+            if(playerPosition[turn] == 0){
+                printf("Player %d is at the dungeon entrance\n",turn);
+            }else if(playerPosition[turn] < 0){
+                printf("Player %d position: %d\n",turn,playerPosition[turn]);
+            }else{
+                printf("Player %d position: %d\n",turn,playerPosition[turn]);
+                printf("Player %d current tile: %c\n",turn,tiles[playerPosition[turn]]);
+            }
         }
         printf("**********\n");
         if(turn==1){turn = 0;}else{turn = 1;}
