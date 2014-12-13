@@ -121,7 +121,7 @@ void dungeon_do(char c,int effect,int turn){
     if(c=='n'){
         printf("Player %d is on a normal tile\n",turn);
     }else if(c=='s'){
-        Rand = (0 + rand() % (effect+effect+1))-effect-1;
+        Rand = (0 + rand() % (effect+effect))-effect;
         printf("Player %d is sliding by %d tiles\n",turn,Rand);
         if((playerPosition[turn] + Rand)<(0)){playerPosition[turn] = 0;}else{playerPosition[turn] = playerPosition[turn] + Rand;}
     }else if(c=='e'){
@@ -136,7 +136,7 @@ void dungeon_do(char c,int effect,int turn){
     }else if(c=='t'){
         Rand = 0 + rand() % (playerPosition[turn]-1);
         printf("Player %d has activated a trap and is going back to tile %d\n",turn,Rand);
-        playerPosition[turn] = 1;
+        playerPosition[turn] = Rand;
     }else if(c=='d'){
         RandLock      = 1 + rand() % 7;
         RandUnlock    = 1 + rand() % 7;
