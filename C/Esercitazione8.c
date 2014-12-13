@@ -60,13 +60,25 @@ void boatCourse(){
 printf("Insert the random generator seed\n");
     scanf("%d",&randSeed);
     srand(randSeed);
-    printf("Boat course:\n");
     for(j=0;j<COURSE_DIM;j++){
         courseX[j] = 0 + rand() % 5;
-        if(shallowsX[j] == courseX[j] && shallowsY[j] == courseY[j]){flag[0]=shallowsX[j];flag[1]=shallowsY[j];}
-        printf("(%d,%d)\n",courseX[j],courseY[j]);}
+    }
+    for(j=0;j<COURSE_DIM;j++){
+        for(i=0;i<SHALLOW_DIM;i++){
+            if((courseY[j] == shallowsY[i] && courseX[j] == shallowsX[i]) && (flag[0] == -1 && flag[1] == -1)){
+                flag[0] = courseX[j];
+                flag[1] = courseY[j];
+            }
+        }
+    }
+    printf("Boat course:\n");
+    for(j=0;j<COURSE_DIM;j++){
+        printf("(%d,%d)\n",courseX[j],courseY[j]);
+    }
     printf("Shallows:\n");
-    for(j=0;j<SHALLOW_DIM;j++){printf("(%d,%d)\n",shallowsX[j],shallowsY[j]);}
+    for(j=0;j<SHALLOW_DIM;j++){
+        printf("(%d,%d)\n",shallowsX[j],shallowsY[j]);
+    }
     if(flag[0] != -1 && flag[1] != -1){
         printf("The boat will run ashore at (%d,%d)\n",flag[0],flag[1]);
     }else{printf("The boat course is valid\n");}
