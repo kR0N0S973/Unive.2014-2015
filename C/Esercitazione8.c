@@ -66,7 +66,7 @@ printf("Insert the random generator seed\n");
         if(shallowsX[j] == courseX[j] && shallowsY[j] == courseY[j]){flag[0]=shallowsX[j];flag[1]=shallowsY[j];}
         printf("(%d,%d)\n",courseX[j],courseY[j]);}
     printf("Shallows:\n");
-    for(j=0;j<SHALLOW_DIM;j++){printf("(%d,%d)\n",shallowsY[j],shallowsX[j]);}
+    for(j=0;j<SHALLOW_DIM;j++){printf("(%d,%d)\n",shallowsX[j],shallowsY[j]);}
     if(flag[0] != -1 && flag[1] != -1){
         printf("The boat will run ashore at (%d,%d)\n",flag[0],flag[1]);
     }else{printf("The boat course is valid\n");}
