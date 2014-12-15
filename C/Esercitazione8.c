@@ -91,7 +91,7 @@ void dungeon(){
     srand(randSeed);
     /* start game */
     while(exitDungeon){
-        movRand = (1 + rand() % 3);
+        movRand = (1 + rand() % (3));
         playerPosition[turn] = playerPosition[turn] + movRand;
         printf("Player %d moving by %d tiles\n",turn,movRand);
         if(playerPosition[turn] == 0){
@@ -105,7 +105,7 @@ void dungeon(){
             }else if(playerPosition[turn] < 0){
                 printf("Player %d position: %d\n",turn,playerPosition[turn]);
             }else{
-                printf("Player %d position: %d\n",turn,playerPosition[turn]);
+                printf("Player %d position: %d\n",turn,playerPosition[turn]+1);
                 printf("Player %d current tile: %c\n",turn,tiles[playerPosition[turn]]);
             }
         }
@@ -113,7 +113,7 @@ void dungeon(){
         if(turn==1){turn = 0;}else{turn = 1;}
         if((playerPosition[0] >= 9) ||  (playerPosition[1] >= 9)){exitDungeon = 0;}
     }
-    printf("Player %d has won\n");
+    printf("Player %d has won\n",turn);
 }
 
 /* (execute Dungeon Position with effect) */
@@ -121,12 +121,12 @@ void dungeon_do(char c,int effect,int turn){
     if(c=='n'){
         printf("Player %d is on a normal tile\n",turn);
     }else if(c=='s'){
-        Rand = (0 + rand() % (effect+effect))-effect;
+        Rand = (0 + rand() % (effect+effect))-(effect);
         printf("Player %d is sliding by %d tiles\n",turn,Rand);
         if((playerPosition[turn] + Rand)<(0)){playerPosition[turn] = 0;}else{playerPosition[turn] = playerPosition[turn] + Rand;}
     }else if(c=='e'){
-        RandOpponent = 1 + rand() % effect;
-        RandEnemy    = 1 + rand() % 7;
+        RandOpponent = 1 + rand() % (effect);
+        RandEnemy    = 1 + rand() % (   6  );
         if(RandEnemy >= RandOpponent){
             printf("Player %d has defeated an enemy: Player rolled %d Enemy rolled %d\n",turn,RandEnemy,RandOpponent);
         }else{
@@ -134,17 +134,17 @@ void dungeon_do(char c,int effect,int turn){
             playerPosition[turn] = -1;
         }
     }else if(c=='t'){
-        Rand = 0 + rand() % (playerPosition[turn]-1);
+        Rand = 0 + rand() % (playerPosition[turn]+1-1);
         printf("Player %d has activated a trap and is going back to tile %d\n",turn,Rand);
         playerPosition[turn] = Rand;
     }else if(c=='d'){
-        RandLock      = 1 + rand() % 7;
-        RandUnlock    = 1 + rand() % 7;
+        RandLock      = 1 + rand() % 6;
+        RandUnlock    = 1 + rand() % 6;
         if(RandUnlock >= RandLock){
             printf("Player %d has unclocked a door and is advancing to the next tile: Player rolled %d Lock level was %d\n",turn,RandUnlock,RandLock);
             playerPosition[turn] = playerPosition[turn] + 1;
         }else{
-            printf("Player %d has not been able to open the lock and loses a turn\n");
+            printf("Player %d has not been able to open the lock and loses a turn\n",turn);
         }
     }else{printf("ERROR: invalid tile type\n");}
 }
