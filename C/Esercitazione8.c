@@ -21,7 +21,7 @@
     int flag[2]={-1,-1};
 	/* esercizio 3 */
 	#define DUNGEON_DIM 	10
-	const char tiles[DUNGEON_DIM]	     = {'n','s','n','s','e','t','n','n','e','d'};
+	const char tiles[DUNGEON_DIM]	     = {'e','s','n','s','e','t','n','n','e','d'};
 	const int effects[DUNGEON_DIM] 	     = { 0 , 3 , 0 , 3 , 3 , 0 , 0 , 0 , 6 , 3 };
     int playerPosition[2]                = { -1 , -1 };
     int movRand = 0,Rand = 0,RandEnemy = 0,RandOpponent = 0,RandUnlock = 0,RandLock = 0,turn=0,exitDungeon = 1;
@@ -94,18 +94,16 @@ void dungeon(){
         movRand = (1 + rand() % (3));
         playerPosition[turn] = playerPosition[turn] + movRand;
         printf("Player %d moving by %d tiles\n",turn,movRand);
-        if(playerPosition[turn] == 0){
+        if(playerPosition[turn] < 0){
             printf("Player %d is at the dungeon entrance\n",turn);
         }else if(playerPosition[turn] >= 9){
             printf("Player %d has exited the dungeon\n",turn);
         }else{
             dungeon_do((tiles[playerPosition[turn]]),effects[playerPosition[turn]],turn);
-            if(playerPosition[turn] == 0){
+            if(playerPosition[turn] < 0){
                 printf("Player %d is at the dungeon entrance\n",turn);
-            }else if(playerPosition[turn] < 0){
-                printf("Player %d position: %d\n",turn,playerPosition[turn]);
             }else{
-                printf("Player %d position: %d\n",turn,playerPosition[turn]+1);
+                printf("Player %d position: %d\n",turn,playerPosition[turn]);
                 printf("Player %d current tile: %c\n",turn,tiles[playerPosition[turn]]);
             }
         }
@@ -125,6 +123,7 @@ void dungeon_do(char c,int effect,int turn){
         printf("Player %d is sliding by %d tiles\n",turn,Rand);
         if((playerPosition[turn] + Rand)<(0)){playerPosition[turn] = 0;}else{playerPosition[turn] = playerPosition[turn] + Rand;}
     }else if(c=='e'){
+		if(effect==0){effect = 1;}
         RandOpponent = 1 + rand() % (effect);
         RandEnemy    = 1 + rand() % (   6  );
         if(RandEnemy >= RandOpponent){
