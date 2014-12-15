@@ -108,8 +108,7 @@ void dungeon(){
             }
         }
         printf("**********\n");
-        if(turn==1){turn = 0;}else{turn = 1;}
-        if((playerPosition[0] >= 9) ||  (playerPosition[1] >= 9)){exitDungeon = 0;}
+        if((playerPosition[0] >= 9) ||  (playerPosition[1] >= 9)){exitDungeon = 0;}else{if(turn==1){turn = 0;}else{turn = 1;}}
     }
     printf("Player %d has won\n",turn);
 }
