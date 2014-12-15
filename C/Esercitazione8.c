@@ -21,7 +21,7 @@
     int flag[2]={-1,-1};
 	/* esercizio 3 */
 	#define DUNGEON_DIM 	10
-	const char tiles[DUNGEON_DIM]	     = {'e','s','n','s','e','t','n','n','e','d'};
+	const char tiles[DUNGEON_DIM]	     = {'n','s','n','s','e','t','n','n','e','d'};
 	const int effects[DUNGEON_DIM] 	     = { 0 , 3 , 0 , 3 , 3 , 0 , 0 , 0 , 6 , 3 };
     int playerPosition[2]                = { -1 , -1 };
     int movRand = 0,Rand = 0,RandEnemy = 0,RandOpponent = 0,RandUnlock = 0,RandLock = 0,turn=0,exitDungeon = 1;
