@@ -96,19 +96,21 @@ void dungeon(){
         printf("Player %d moving by %d tiles\n",turn,movRand);
         if(playerPosition[turn] < 0){
             printf("Player %d is at the dungeon entrance\n",turn);
-        }else if(playerPosition[turn] >= 9){
+        }else if(playerPosition[turn] > 9){
             printf("Player %d has exited the dungeon\n",turn);
         }else{
             dungeon_do((tiles[playerPosition[turn]]),effects[playerPosition[turn]],turn);
             if(playerPosition[turn] < 0){
                 printf("Player %d is at the dungeon entrance\n",turn);
-            }else{
+            }else if(playerPosition[turn] > 9){
+				 printf("Player %d has exited the dungeon\n",turn);
+			}else{
                 printf("Player %d position: %d\n",turn,playerPosition[turn]);
                 printf("Player %d current tile: %c\n",turn,tiles[playerPosition[turn]]);
             }
         }
         printf("**********\n");
-        if((playerPosition[0] >= 9) ||  (playerPosition[1] >= 9)){exitDungeon = 0;}else{if(turn==1){turn = 0;}else{turn = 1;}}
+        if((playerPosition[0] >= 9) ||  (playerPosition[1] > 9)){exitDungeon = 0;}else{if(turn==1){turn = 0;}else{turn = 1;}}
     }
     printf("Player %d has won\n",turn);
 }
