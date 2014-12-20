@@ -2,7 +2,9 @@
 #include <stdio.h>
 
 void graphMatrix();
+    void visualizzaMatrix();
 void graphPath();
+    void createPathMatrix();
 void TTT();
     void inizializzaField();
     void visualizzaField();
@@ -13,9 +15,16 @@ void TTT();
     int choosen;
 
     /* ESERCIZIO #1 */
-        int edgeGraph;
+        #define MATRIX_SIZE 5
+        int matrix[MATRIX_SIZE][MATRIX_SIZE];
+        int edges[MATRIX_SIZE][2];
+        int edge1,edge2,e,n;
     /* ESERCIZIO #2 */
-
+        #define ADJACENCY_DIM 5
+        int adjacencyMatrix[ADJACENCY_DIM][ADJACENCY_DIM] = {{0,1,0,1,0},{1,0,0,1,0},{0,0,0,0,1},{1,1,0,0,1},{0,0,1,1,0}};
+        int pathMatrix[ADJACENCY_DIM][ADJACENCY_DIM];
+        int edge[ADJACENCY_DIM-1][2];
+        int s,step_succ,step,f=0;
     /* ESERCIZIO #3 */
         #define FIELD_SIZE 3
         int gameField[FIELD_SIZE][FIELD_SIZE];
@@ -39,13 +48,88 @@ int main(){
 
 /* (Graph matrix) */
 void graphMatrix(){
-    printf("Insert the edge %d of the graph\n");
-    scanf("%d",&edgeGraph);
+    for(e=0;e<MATRIX_SIZE;e++){
+        printf("Insert the edge %d of the graph\n",e);
+        scanf("%d %d",&edge1,&edge2);
+        matrix[edge1-1][edge2-1] = 1;
+        matrix[edge2-1][edge1-1] = 1;
+        edges[e][0] = edge1;
+        edges[e][1] = edge2;
+    }
+    visualizzaMatrix();
+}
+
+void visualizzaMatrix(){
+    printf("{");
+    for(e=0;e<MATRIX_SIZE;e++){
+            printf("(%d,%d)",edges[e][0],edges[e][1]);
+    }
+    printf("}\n");
+    for(e=0;e<MATRIX_SIZE;e++){
+        for(n=0;n<MATRIX_SIZE;n++){
+            printf("%d ",matrix[e][n]);
+        }
+        printf("\n");
+    }
+
 }
 
 /* (Graph path) */
 void graphPath(){
+     printf("Insert step %d\n",s);
+     scanf("%d",&step);
+     edge[s][0] = step;
+     for(s=0;s<3;s++){
+        printf("Insert step %d\n",s);
+        scanf("%d",&step);
+        edge[s][1] = step;
+        if((s+1)<(ADJACENCY_DIM-2)){
+            edge[s+1][0] = step;
+        }
+     }
+     createPathMatrix();
 
+     for(e=0;e<ADJACENCY_DIM;e++){
+        for(n=0;n<ADJACENCY_DIM;n++){
+            printf("%d ",adjacencyMatrix[e][n]);
+        }
+        printf("\n");
+     }
+     printf("\n");
+     printf("{");
+     for(e=0;e<(ADJACENCY_DIM-2);e++){
+            printf("(%d,%d)",edge[e][0],edge[e][1]);
+     }
+     printf("}\n");
+     for(e=0;e<ADJACENCY_DIM;e++){
+        for(n=0;n<ADJACENCY_DIM;n++){
+            printf("%d ",pathMatrix[e][n]);
+        }
+        printf("\n");
+     }
+     if(equalPathMatrixes()){
+        printf("The path is valid\n");
+     }else{
+        printf("The path is invalid\n");
+     }
+}
+
+void createPathMatrix(){
+    for(e=0;e<(ADJACENCY_DIM-2);e++){
+        pathMatrix[edge[e][0]-1][edge[e][1]-1] = 1;
+        pathMatrix[edge[e][1]-1][edge[e][0]-1] = 1;
+    }
+}
+
+int equalPathMatrixes(){
+    for(e=0;e<ADJACENCY_DIM;e++){
+        for(i=0;i<ADJACENCY_DIM;i++){
+            if(pathMatrix[e][i]!=adjacencyMatrix[e][i]){
+                return 0;
+            }
+        }
+    }
+    return 1;
 }
 
 /* (Tic-tac-toe) */
