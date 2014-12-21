@@ -135,6 +135,7 @@ int equalPathMatrixes(){
 /* (Tic-tac-toe) */
 void TTT(){
     inizializzaField();
+    visualizzaField();
     while(TTT_error != 1 && play<9){
         play = play + 1;
         cmpp=compareField();
