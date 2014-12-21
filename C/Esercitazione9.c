@@ -145,7 +145,11 @@ void TTT(){
             do{
                 printf("Player %d turn: Insert the tile coordinates\n",turn);
                 scanf("%d %d",&_x,&_y);
-                k = setTale(_x,_y,turn);
+                if(_x < 0 || _x > 2 || _y < 0 || _y > 2){
+                        printf("Invalid board coordinates\n");
+                        k = 0;
+                }else{k = setTale(_x,_y,turn);}
+
             }while(k == 0);
             visualizzaField();
         }
