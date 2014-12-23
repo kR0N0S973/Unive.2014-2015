@@ -4,7 +4,6 @@
 void graphMatrix();
     void visualizzaMatrix();
 void graphPath();
-    void createPathMatrix();
 void TTT();
     void inizializzaField();
     void visualizzaField();
@@ -20,11 +19,11 @@ void TTT();
         int edges[MATRIX_SIZE][2];
         int edge1,edge2,e,n;
     /* ESERCIZIO #2 */
-        #define ADJACENCY_DIM 5
-        int adjacencyMatrix[ADJACENCY_DIM][ADJACENCY_DIM] = {{0,1,0,1,0},{1,0,0,1,0},{0,0,0,0,1},{1,1,0,0,1},{0,0,1,1,0}};
-        int pathMatrix[ADJACENCY_DIM][ADJACENCY_DIM];
-        int edge[ADJACENCY_DIM-1][2];
-        int s,step_succ,step,f=0;
+        #define DIM_VER 4
+        int adjacencyMatrix[5][5] = {{0,1,0,1,0},{1,0,0,1,0},{0,0,0,0,1},{1,1,0,0,1},{0,0,1,1,0}};
+        int V[DIM_VER];
+        int v;
+        int path=1;
     /* ESERCIZIO #3 */
         #define FIELD_SIZE 3
         int gameField[FIELD_SIZE][FIELD_SIZE];
@@ -76,60 +75,20 @@ void visualizzaMatrix(){
 
 /* (Graph path) */
 void graphPath(){
-     printf("Insert step %d\n",s);
-     scanf("%d",&step);
-     edge[s][0] = step;
-     for(s=0;s<3;s++){
-        printf("Insert step %d\n",s);
-        scanf("%d",&step);
-        edge[s][1] = step;
-        if((s+1)<(ADJACENCY_DIM-2)){
-            edge[s+1][0] = step;
-        }
-     }
-     createPathMatrix();
+     for(i=0;i<DIM_VER;i++)
+		{
+			printf("Insert step %d\n", i);
+			scanf("%d", &v);
+			V[i] = v;
+		}
 
-     for(e=0;e<ADJACENCY_DIM;e++){
-        for(n=0;n<ADJACENCY_DIM;n++){
-            printf("%d ",adjacencyMatrix[e][n]);
-        }
-        printf("\n");
-     }
-     printf("\n");
-     printf("{");
-     for(e=0;e<(ADJACENCY_DIM-2);e++){
-            printf("(%d,%d)",edge[e][0],edge[e][1]);
-     }
-     printf("}\n");
-     for(e=0;e<ADJACENCY_DIM;e++){
-        for(n=0;n<ADJACENCY_DIM;n++){
-            printf("%d ",pathMatrix[e][n]);
-        }
-        printf("\n");
-     }
-     if(equalPathMatrixes()){
-        printf("The path is valid\n");
-     }else{
-        printf("The path is invalid\n");
-     }
-}
+		for(i=0;i<(DIM_VER-1);i++)
+		{
+			if ((adjacencyMatrix[ V[i]-1 ][ V[i+1]-1 ]) != 1) {path=0;}
+		}
 
-void createPathMatrix(){
-    for(e=0;e<(ADJACENCY_DIM-2);e++){
-        pathMatrix[edge[e][0]-1][edge[e][1]-1] = 1;
-        pathMatrix[edge[e][1]-1][edge[e][0]-1] = 1;
-    }
-}
-
-int equalPathMatrixes(){
-    for(e=0;e<ADJACENCY_DIM;e++){
-        for(i=0;i<ADJACENCY_DIM;i++){
-            if(pathMatrix[e][i]!=adjacencyMatrix[e][i]){
-                return 0;
-            }
-        }
-    }
-    return 1;
+		if (path) {printf("The path is valid\n");}
+		else {printf("The path is invalid\n");}
 }
 
 /* (Tic-tac-toe) */
