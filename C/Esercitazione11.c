@@ -7,8 +7,6 @@
 
 void acquisisci(int[][MAXDIM],int);
 void calcola(int[][MAXDIM],int,int*,int*); 
-int searchInArray(int[][2],int,int);
-int getMaxRow(int[],int);
 
 int main(){
 	int mat[MAXDIM][MAXDIM];
